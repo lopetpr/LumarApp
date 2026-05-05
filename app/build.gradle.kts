@@ -81,6 +81,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
     implementation("androidx.compose.material:material-icons-extended")
 
+
+    implementation(platform("androidx.compose:compose-bom:2024.04.01"))
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
     // ── DataStore ──
     // Almacenamiento local asíncrono y seguro para el token
     // Reemplaza a SharedPreferences con una API moderna basada en coroutines

@@ -9,7 +9,10 @@
       "Bash(pkill -f GradleDaemon)",
       "Bash(git rm *)",
       "Bash(android screen *)",
-      "Bash(android layout *)"
+      "Bash(android layout *)",
+      "Bash(grep -E \"\\(components|home\\)$\")",
+      "Bash(adb devices *)",
+      "Bash(~/Library/Android/sdk/emulator/emulator -avd Pixel_9_Pro -no-audio -no-boot-anim)"
     ]
   }
 }

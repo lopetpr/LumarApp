@@ -6,7 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 import com.example.lumarapp.auth.presentation.login.LoginScreen
-import com.example.lumarapp.home.admin.presentacion.HomeScreen
+import com.example.lumarapp.home.admin.presentacion.AdminHomeScreen
+
 import com.example.lumarapp.splash.ui.SplashScreen
 
 
@@ -58,15 +59,21 @@ fun MainNavigation(
         }
 
         composable("home") {
-            HomeScreen(
-//                onLogout = {
-//                    navController.navigate("login") {
-//                        // Al cerrar sesión, limpiamos TODO el back stack.
-//                        // popUpTo(0) elimina todas las pantallas desde la raíz.
-//                        popUpTo(0) { inclusive = true }
-//                    }
-//                }
-            )
+
+
+            AdminHomeScreen()
+
+
+
+//            HomeScreen(
+////                onLogout = {
+////                    navController.navigate("login") {
+////                        // Al cerrar sesión, limpiamos TODO el back stack.
+////                        // popUpTo(0) elimina todas las pantallas desde la raíz.
+////                        popUpTo(0) { inclusive = true }
+////                    }
+////                }
+//            )
         }
 
 

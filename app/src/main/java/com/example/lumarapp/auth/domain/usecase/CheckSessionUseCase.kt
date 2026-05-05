@@ -1,0 +1,12 @@
+package com.example.lumarapp.auth.domain.usecase
+
+import com.example.lumarapp.auth.domain.repository.AuthRepository
+import javax.inject.Inject
+
+class CheckSessionUseCase @Inject constructor(
+    private val authRepository: AuthRepository
+) {
+    suspend operator fun invoke(): Boolean {
+        return authRepository.isLoggedIn()
+    }
+}

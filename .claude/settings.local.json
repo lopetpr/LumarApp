@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(./gradlew compileDebugKotlin)"
+      "Bash(./gradlew compileDebugKotlin)",
+      "WebFetch(domain:github.com)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(./gradlew assembleDebug --stacktrace)",
+      "Bash(./gradlew --stop)",
+      "Bash(pkill -f GradleDaemon)",
+      "Bash(git rm *)",
+      "Bash(android screen *)",
+      "Bash(android layout *)"
     ]
   }
 }

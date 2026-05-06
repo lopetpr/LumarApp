@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -66,13 +65,13 @@ fun AdminBottomBar(
         modifier = Modifier
             .fillMaxWidth()
             .shadow(
-                elevation = 12.dp,
+                elevation = 14.dp,
                 shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp),
                 clip = false
             )
-            .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+            .clip(RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp, bottomStart = 25.dp, bottomEnd = 25.dp))
             .background(Color.White)
-            .padding(bottom = 8.dp)
+
     ) {
         Row(
             modifier = Modifier
@@ -91,7 +90,35 @@ fun AdminBottomBar(
                 )
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable(onClick = onAddClick)
+                    .padding(vertical = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(44.dp)
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(Color.Black),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Nueva Venta",
+                        tint = Color.White,
+                        modifier = Modifier.size(16.dp)
+                    )
+                }
+                Text(
+                    text = "Nueva Venta",
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Transparent
+                )
+            }
 
             RIGHT_ITEMS.forEach { item ->
                 BottomBarItem(
@@ -101,24 +128,6 @@ fun AdminBottomBar(
                     modifier = Modifier.weight(1f)
                 )
             }
-        }
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .offset(y = (-20).dp)
-                .size(56.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(Color.Black)
-                .clickable(onClick = onAddClick),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "Nueva Venta",
-                tint = Color.White,
-                modifier = Modifier.size(28.dp)
-            )
         }
     }
 }

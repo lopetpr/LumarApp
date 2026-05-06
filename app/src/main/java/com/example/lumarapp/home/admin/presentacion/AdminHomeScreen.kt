@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.lumarapp.core.ui.components.TopBar
 import com.example.lumarapp.home.admin.presentacion.componentes.AdminHomeContent
-import com.example.lumarapp.home.admin.presentacion.componentes.AdminHomeTopBar
 
 @Composable
 fun AdminHomeScreen(
@@ -14,13 +14,15 @@ fun AdminHomeScreen(
 ) {
     val state by vm.uiState.collectAsStateWithLifecycle()
 
-
+    val statetitulo = "Bienvenido, ${state.nombre}"
+    val detalles = "Rol: ${state.rolTexto}"
 
 
     Scaffold(
-        topBar = { AdminHomeTopBar(
+        topBar = { TopBar(
+            titulo = statetitulo,
+            detalles = detalles
 
-            state = state
         ) }
     ) { paddingValues ->
         AdminHomeContent(paddingValues)

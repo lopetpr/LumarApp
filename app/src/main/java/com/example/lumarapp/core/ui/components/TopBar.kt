@@ -1,4 +1,4 @@
-package com.example.lumarapp.home.admin.presentacion.componentes
+package com.example.lumarapp.core.ui.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,23 +16,24 @@ import com.example.lumarapp.home.admin.presentacion.AdminHomeUiState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdminHomeTopBar(
+fun TopBar(
 
+    titulo: String,
+    detalles: String,
 
-    state: AdminHomeUiState
 
 ) {
     TopAppBar(
         title = {
             Column {
                 Text(
-                    text = "Hola, ${state.nombre}",
+                    text = titulo,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Gray800
                 )
                 Text(
-                    text = "${state.rolTexto} Lumar | Juliaca",
+                    text = detalles,
                     fontSize = 12.sp,
                     color = Gray500
                 )

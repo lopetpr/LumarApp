@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -24,10 +25,10 @@ class TokenManager @Inject constructor(
         private val TOKEN_KEY = stringPreferencesKey("token")
         private val USER_ID_KEY = stringPreferencesKey("id")
         private val NAME_KEY = stringPreferencesKey("name")
-        private val ROL_KEY = stringPreferencesKey("rol")
+        private val ROL_KEY = intPreferencesKey("rol")
     }
 
-    suspend fun saveSession(token: String, id: String, name: String, rol: String) {
+    suspend fun saveSession(token: String, id: String, name: String, rol: Int) {
         context.dataStore.edit { prefs ->
             prefs[TOKEN_KEY] = token
             prefs[USER_ID_KEY] = id
@@ -44,6 +45,11 @@ class TokenManager @Inject constructor(
 
     suspend fun getName(): String? {
         return context.dataStore.data.map { it[NAME_KEY] }.first()
+    }
+
+    suspend fun getRol(): Int? {
+
+        return context.dataStore.data.map { it [ROL_KEY] }.first()
     }
 
     suspend fun clearSession() {

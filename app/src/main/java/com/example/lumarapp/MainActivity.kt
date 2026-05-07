@@ -6,8 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.lumarapp.core.navigation.MainNavigation
-
+import com.example.lumarapp.core.navigation.RootNavGraph
 import com.example.lumarapp.core.ui.theme.LumarAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LumarAppTheme {
                 navController = rememberNavController()
-                MainNavigation(navController = navController)
+                RootNavGraph(navController = navController)
             }
         }
     }

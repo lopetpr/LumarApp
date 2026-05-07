@@ -13,7 +13,10 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -28,6 +31,7 @@ import com.example.lumarapp.core.ui.components.AdminDrawer
 import com.example.lumarapp.core.ui.components.TopBar
 import com.example.lumarapp.home.admin.presentation.navigation.screen.AdminScreen
 import com.example.lumarapp.home.admin.presentacion.componentes.AdminHomeContent
+import com.example.lumarapp.home.admin.categorias.presentation.CategoriaScreen
 import com.example.lumarapp.home.admin.presentacion.componentes.PlaceholderAdminScreen
 import kotlinx.coroutines.launch
 
@@ -58,7 +62,13 @@ fun AdminHomeScreen(
     val backStackEntry by innerNavController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: AdminScreen.Dashboard.route
 
-    val (titulo, detalles) = topBarInfo(currentRoute, state.nombre, state.rolTexto)
+    var categoriaSubtitle by remember { mutableStateOf("") }
+
+    val (titulo, detalles) = if (currentRoute == AdminScreen.Categorias.route && categoriaSubtitle.isNotEmpty()) {
+        "Categorías" to categoriaSubtitle
+    } else {
+        topBarInfo(currentRoute, state.nombre, state.rolTexto)
+    }
     val showBottomBar = currentRoute != AdminScreen.NuevaVenta.route
 
     LaunchedEffect(state.logoutTriggered) {
@@ -112,7 +122,10 @@ fun AdminHomeScreen(
                         PlaceholderAdminScreen(paddingValues = paddingValues, titulo = "Tiendas")
                     }
                     composable(AdminScreen.Categorias.route) {
-                        PlaceholderAdminScreen(paddingValues = paddingValues, titulo = "Categorías")
+                        CategoriaScreen(
+                            paddingValues = paddingValues,
+                            onSubtitleUpdate = { categoriaSubtitle = it }
+                        )
                     }
                     composable(AdminScreen.Productos.route) {
                         PlaceholderAdminScreen(paddingValues = paddingValues, titulo = "Productos")

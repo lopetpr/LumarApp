@@ -6,6 +6,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import com.example.lumarapp.core.ui.theme.Gray800
 import com.example.lumarapp.core.ui.theme.RedText
@@ -14,10 +15,12 @@ import com.example.lumarapp.core.ui.theme.RedText
 fun DeleteCategoriaDialog(
     categoriaNombre: String,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
+        containerColor = Color.White,
         title = {
             Text(
                 text = "Eliminar categoría",

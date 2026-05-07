@@ -2,6 +2,7 @@ package com.example.lumarapp.di
 
 import com.example.lumarapp.auth.data.remote.AuthApiService
 import com.example.lumarapp.auth.data.remote.AuthInterceptor
+import com.example.lumarapp.home.admin.categorias.data.remote.CategoriaService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,5 +51,11 @@ object AppModule {
     @Singleton
     fun provideAuthApiService(retrofit: Retrofit): AuthApiService {
         return retrofit.create(AuthApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCategoriaService(retrofit: Retrofit): CategoriaService {
+        return retrofit.create(CategoriaService::class.java)
     }
 }

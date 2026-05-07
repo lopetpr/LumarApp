@@ -32,27 +32,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.lumarapp.core.ui.theme.Blues
 import com.example.lumarapp.core.ui.theme.Gray500
-
-object AdminRoutes {
-    const val INICIO = "inicio"
-    const val STOCK = "stock"
-    const val NUEVA_VENTA = "nueva_venta"
-    const val VENTAS = "ventas"
-    const val CLIENTES = "clientes"
-}
+import com.example.lumarapp.home.admin.presentation.navigation.screen.AdminScreen
 
 sealed class AdminNavItem(
     val route: String,
     val icon: ImageVector,
     val label: String
 ) {
-    object Inicio : AdminNavItem(AdminRoutes.INICIO, Icons.Filled.Home, "Inicio")
-    object Stock : AdminNavItem(AdminRoutes.STOCK, Icons.Filled.Inventory2, "Stock")
-    object Ventas : AdminNavItem(AdminRoutes.VENTAS, Icons.Filled.Receipt, "Ventas")
-    object Clientes : AdminNavItem(AdminRoutes.CLIENTES, Icons.Filled.People, "Clientes")
+    object Inicio   : AdminNavItem(AdminScreen.Dashboard.route,  Icons.Filled.Home,      "Inicio")
+    object Stock    : AdminNavItem(AdminScreen.Inventario.route, Icons.Filled.Inventory2, "Stock")
+    object Ventas   : AdminNavItem(AdminScreen.Ventas.route,     Icons.Filled.Receipt,    "Ventas")
+    object Clientes : AdminNavItem(AdminScreen.Clientes.route,   Icons.Filled.People,     "Clientes")
 }
 
-private val LEFT_ITEMS = listOf(AdminNavItem.Inicio, AdminNavItem.Stock)
+private val LEFT_ITEMS  = listOf(AdminNavItem.Inicio, AdminNavItem.Stock)
 private val RIGHT_ITEMS = listOf(AdminNavItem.Ventas, AdminNavItem.Clientes)
 
 @Composable
@@ -71,7 +64,6 @@ fun AdminBottomBar(
             )
             .clip(RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp, bottomStart = 25.dp, bottomEnd = 25.dp))
             .background(Color.White)
-
     ) {
         Row(
             modifier = Modifier
